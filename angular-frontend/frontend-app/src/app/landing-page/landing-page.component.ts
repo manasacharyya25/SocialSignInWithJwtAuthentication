@@ -12,4 +12,12 @@ export class LandingPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  GoogleLogin(): void {
+    window.alert("Login with Google");
+  }
+
+  FbLogin(): void {
+    window.alert("Login with Facebook");
+  }
+
 }
