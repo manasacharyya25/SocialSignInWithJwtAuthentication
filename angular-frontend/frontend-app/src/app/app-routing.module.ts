@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LandingPageComponent } from './landing-page/landing-page.component'
 import { ProfileComponent } from './profile/profile.component';
+import { AuthenticationGuard } from './authenticationGuard';
+
 
 const routes: Routes = [
   {
@@ -14,6 +16,7 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent,
     pathMatch: 'full',
+    canActivate: [AuthenticationGuard]
   }
 ];
 
