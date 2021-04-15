@@ -1,3 +1,10 @@
-<p>Hello User. You've arrived at Profile.</p>
-
-<a href="/">Logout</a>
+<div class="container">
+    <img [src]="photoUrl" alt="Profle Photo" style="border-radius: 50%;">
+    <div class="inner-container">
+        <h1>{{username}}</h1>
+        <h5>{{email}}</h5>
+    </div>
+    <div style="padding-left: 5rem;">
+        <input type="button" value="logout" (click)="logout()" />
+    </div>
+</div>

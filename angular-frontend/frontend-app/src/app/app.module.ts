@@ -21,7 +21,8 @@ import {
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SocialLoginModule
   ],
   providers: [
     {
