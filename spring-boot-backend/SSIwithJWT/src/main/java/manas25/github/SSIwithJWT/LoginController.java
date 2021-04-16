@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("users")
+@CrossOrigin(origins = "*")
 public class LoginController
 {
   @Autowired
   private UsersRepository usersRepo;
 
-  @GetMapping("user/{id}")
+  @GetMapping("{id}")
   public Optional<Users> GetUserById(@PathVariable int id) {
     return usersRepo.findById(id);
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SocialAuthenticationService } from '../social_authentication.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,8 @@ export class ProfileComponent implements OnInit {
   email: String;
   photoUrl: String;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private authService: SocialAuthenticationService) { }
 
   ngOnInit(): void {
     this.username = localStorage.getItem("user_name");
@@ -26,7 +28,7 @@ export class ProfileComponent implements OnInit {
     localStorage.removeItem("photo_url");
 
     console.log("Logging Out");
-
+    this.authService.signOut();
     this.router.navigate(['/']);
   }
 
