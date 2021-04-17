@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.Collection;
 
 @Entity
@@ -18,6 +19,8 @@ public class Users implements UserDetails
   private String username;
   private String email;
   private String photoUrl;
+  @Transient
+  private String password;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -26,7 +29,7 @@ public class Users implements UserDetails
 
   @Override
   public String getPassword() {
-    return null;
+    return password;
   }
 
   @Override

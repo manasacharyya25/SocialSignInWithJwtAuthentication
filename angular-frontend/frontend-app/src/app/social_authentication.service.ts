@@ -36,7 +36,7 @@ export class SocialAuthenticationService {
 
         this.httpClient.post(
             "http://localhost:8080/users/signup",
-            { username: email, photoUrl: photoUrl }
+            { username: username, email: email, password: response.idToken, photoUrl: photoUrl }
         ).subscribe(response => localStorage.setItem("user_id", response.toString()))
 
         this.router.navigate(['/profile']);
