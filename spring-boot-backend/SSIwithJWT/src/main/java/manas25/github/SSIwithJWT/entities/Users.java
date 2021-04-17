@@ -1,4 +1,4 @@
-package manas25.github.SSIwithJWT;
+package manas25.github.SSIwithJWT.entities;
 
 import lombok.Data;
 

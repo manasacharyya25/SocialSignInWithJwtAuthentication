@@ -1,6 +1,7 @@
-package manas25.github.SSIwithJWT;
+package manas25.github.SSIwithJWT.controllers;
 
-import lombok.val;
+import manas25.github.SSIwithJWT.entities.Users;
+import manas25.github.SSIwithJWT.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
