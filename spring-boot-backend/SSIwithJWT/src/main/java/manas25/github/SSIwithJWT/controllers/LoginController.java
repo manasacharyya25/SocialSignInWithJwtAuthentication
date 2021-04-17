@@ -1,5 +1,6 @@
 package manas25.github.SSIwithJWT.controllers;
 
+import manas25.github.SSIwithJWT.AppUtils;
 import manas25.github.SSIwithJWT.entities.Users;
 import manas25.github.SSIwithJWT.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +16,21 @@ public class LoginController
   @Autowired
   private UsersRepository usersRepo;
 
-  @GetMapping("{id}")
-  public Optional<Users> GetUserById(@PathVariable int id) {
-    return usersRepo.findById(id);
+  @GetMapping()
+  public String GetUserById() {
+    return "Authenticated";
   }
 
   @PostMapping("signup")
   public int SignUpUser(@RequestBody Users user) {
-    Optional<Users> existingUser = usersRepo.findById(user.getId());
+    int userId = AppUtils.getHashId(user.getUsername());
+    Optional<Users> existingUser = usersRepo.findById(userId);
 
     if(!existingUser.isPresent()) {
+      user.setId(userId);
       Users newUser = usersRepo.saveAndFlush(user);
       return newUser.getId();
     }
-    return existingUser.get().getId();
+    return userId;
   }
 }
