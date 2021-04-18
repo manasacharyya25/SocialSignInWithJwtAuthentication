@@ -8,17 +8,18 @@ import manas25.github.SSIwithJWT.entities.Users;
 import manas25.github.SSIwithJWT.repositories.UsersRepository;
 import manas25.github.SSIwithJWT.security.SocialSignInAuthenticationManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("users")
-@CrossOrigin(origins = "*")
 public class LoginController
 {
   @Autowired
@@ -32,8 +33,8 @@ public class LoginController
     return "Authenticated";
   }
 
-  @PostMapping("signup")
-  public String SignUpUser(@RequestBody Users user) {
+  @PostMapping(value = "signup")
+  public AuthResponse SignUpUser(@RequestBody Users user) {
     try {
       authManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
 
@@ -55,12 +56,12 @@ public class LoginController
           .signWith(Keys.hmacShaKeyFor(secretKey.getBytes()))
           .compact();
 
-      return jwtToken;
+      AuthResponse response = AuthResponse.builder()
+          .userId(userId)
+          .jwtToken(jwtToken)
+          .build();
 
-//      return AuthResponse.builder()
-//          .userId(userId)
-//          .jwtToken(jwtToken)
-//          .build();
+      return response;
     }catch (Exception ex) {
       throw new RuntimeException("User Authentication Failed");
     }

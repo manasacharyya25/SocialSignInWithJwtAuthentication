@@ -23,7 +23,7 @@ export class SocialAuthenticationService {
         this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
     }
 
-    handleGoogleLogin(response) {
+    async handleGoogleLogin(response) {
         var username = response.name;
         var email = response.email;
         var photoUrl = response.photoUrl;
@@ -34,12 +34,22 @@ export class SocialAuthenticationService {
         localStorage.setItem("email", email);
         localStorage.setItem("photo_url", photoUrl);
 
-        this.httpClient.post(
+        await this.httpClient.post(
             "http://localhost:8080/users/signup",
             { username: username, email: email, password: response.idToken, photoUrl: photoUrl }
-        ).subscribe(response => localStorage.setItem("user_id", response.toString()))
+        ).toPromise().then(authResponse => {
+            this.handleAuthResponse(authResponse);
+        });
 
         this.router.navigate(['/profile']);
+    }
+
+    handleAuthResponse(authResponse): void {
+        var userId = authResponse.userid;
+        var jwtToken = authResponse.jwtToken;
+
+        localStorage.setItem("user_id", userId);
+        localStorage.setItem("jwtToken", jwtToken);
     }
 
     signOut(): void {
