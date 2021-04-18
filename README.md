@@ -4,9 +4,9 @@
 
 
 # About
-A Web Application that let's you authenticate using <stron>Social Sign In (Google Sign-In)</strong> and access Secure Resource from Backend Server.
+A Web Application that let's you authenticate using <strong>Social Sign In (Google Sign-In)</strong> and access Secure Resource from Backend Server.
 
-Developed using Angular for Frontend Application and Spring Boot + Spring Security with JWT Authentication for Backend Server.
+Developed using <strong>Angular</strong> for Frontend Application and <strong>Spring Boot + Spring Security with JWT Authentication</strong> for Backend Server.
 
 # Usage
 
