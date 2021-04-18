@@ -3,7 +3,7 @@
 ![image](https://user-images.githubusercontent.com/42498389/115154295-c1641680-a097-11eb-8655-23ddeac874d6.png)
 
 
-#About
+# About
 A Web Application that let's you authenticate using <stron>Social Sign In (Google Sign-In)</strong> and access Secure Resource from Backend Server.
 
 Developed using Angular for Frontend Application and Spring Boot + Spring Security with JWT Authentication for Backend Server.
